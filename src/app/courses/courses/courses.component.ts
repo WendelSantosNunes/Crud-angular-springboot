@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Course } from '../model/course';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -8,14 +9,11 @@ import { Course } from '../model/course';
 })
 export class CoursesComponent {
 
-  // Criar a variável, adicionando a tipagem e Inicializando
-  courses: Course[] = [
-    {_id: '1', name:'Angular', category: 'Front-end'}
-  ];
-  // Mostrar quais atributo do array
+  courses: Course[] = [];
+
   displayedColumns = ['name', 'category'];
 
-  constructor() {
-
+  constructor(private coursesService: CoursesService) {
+    this.courses = this.coursesService.list();
   }
 }
